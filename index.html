@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order Details</title>
+  </head>
+  <body>
+    <div class="container">
+      <form id="details">
+        <div class="form-control">
+          <label for="price">Price</label>
+          <input type="number" id="price" required />
+        </div>
+        <div class="form-control">
+          <label for="food">Food</label>
+          <input type="text" id="food" required />
+        </div>
+        <div class="form-control">
+          <label for="category">Table</label>
+          <select name="category" id="category">
+            <option value="">Choose Table</option>
+            <option id="t1" value="1">Table 1</option>
+            <option id="t2" value="2">Table 2</option>
+            <option id="t3" value="3">Table 3</option>
+          </select>
+        </div>
+        <div class="form-control">
+          <button id="btn">Order</button>
+        </div>
+      </form>
+      <div class="part-2">
+        Table 1
+        <ul id="tableone"></ul>
+        Table 2
+        <ul id="tabletwo"></ul>
+        Table 3
+        <ul id="tablethree"></ul>
+      </div>
+    </div>
+    
+    <script>
+      let button = document.getElementById("btn");
+      button.addEventListener("click", (e) => {
+        e.preventDefault();
+        let price = document.getElementById("price").value;
+        let food = document.getElementById("food").value;
+        let category = document.getElementById("category").value;
+        let myobj = {
+          price: price,
+          food: food,
+          category: category,
+        };
+        console.log(`${price} : ${food} : ${category}`);
+
+        const li = document.createElement("li");
+        li.appendChild(document.createTextNode(`${food}`));
+        if (category === "1") {
+          document.getElementById("tableone").appendChild(li);
+        } else if (category === "2") {
+          document.getElementById("tabletwo").appendChild(li);
+        } else if (category === "3") {
+          document.getElementById("tablethree").appendChild(li);
+        }
+
+        // Make a POST request to the backend to add the order
+       
+      });
+    </script>
+  </body>
+</html>
